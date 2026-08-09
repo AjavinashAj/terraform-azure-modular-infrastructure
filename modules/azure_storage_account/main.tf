@@ -1,6 +1,6 @@
 resource "azurerm_storage_account" "storage_block" {
 
-    for_each = var.stg_accounts
+  for_each                 = var.stg_accounts
   name                     = each.value.stg_account_name
   resource_group_name      = each.value.rg-name
   location                 = each.value.location
