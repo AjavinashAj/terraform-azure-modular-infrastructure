@@ -2,11 +2,18 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "4.8.0"
+      version = "5.0.0"
     }
+  }
+  backend "azurerm" {
+    
+     resource_group_name  = "EY-rg"          
+    storage_account_name = "eystorage01"                              
+    container_name       = "eycontainer"                               
+    key                  = "dev.eycontainer"               
   }
 }
 provider "azurerm" {
   features {}
-  subscription_id = "03ae0d8b-56f1-4438-b3ce-c57dc4f35df6"
+  
 }

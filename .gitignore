@@ -8,6 +8,7 @@
 # Terraform variable files - may contain sensitive values
 *.tfvars
 *.tfvars.json
+*.tfplan
 
 # Terraform crash logs
 crash.log

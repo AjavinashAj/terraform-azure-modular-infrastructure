@@ -2,9 +2,9 @@ module "rg_module" {
   source = "../../modules/azure_resource_group"
   rgs    = var.resource_group
 }
-module "storage_module"{
-  depends_on = [ module.rg_module ]
-  source = "../../modules/azure_storage_account"
+module "storage_module" {
+  depends_on   = [module.rg_module]
+  source       = "../../modules/azure_storage_account"
   stg_accounts = var.stg_accounts
 }
 module "vnet_module" {
