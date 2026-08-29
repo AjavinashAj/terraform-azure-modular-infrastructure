@@ -42,14 +42,20 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
 
+      - name: Create terraform.tfvars
+        run: |
+          cat <<EOF > terraform.tfvars
+          ${{ secrets.DEV_TFVARS }}
+          EOF
+
       - name: Terraform Init
-        run: terraform init
+        run: terraform init -reconfigure
 
       - name: Terraform Format
-        run: terraform fmt 
+        run: terraform fmt -check -recursive
 
       - name: Terraform Validate
         run: terraform validate
 
       - name: Terraform Plan
-        run: terraform plan -out=tfplan
+        run: terraform plan -var-file="terraform.tfvars" -out=tfplan
