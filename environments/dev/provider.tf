@@ -8,7 +8,7 @@ terraform {
   backend "azurerm" {
     
      resource_group_name  = "EY-rg"          
-    storage_account_name = "eystorage01"                              
+    storage_account_name = "eystorage02"                              
     container_name       = "eycontainer"                               
     key                  = "dev.eycontainer"               
   }
