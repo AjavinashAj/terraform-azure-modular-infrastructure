@@ -11,7 +11,12 @@ on:
 
 jobs:
   terraform:
+    name: Terraform CI (GitHub Hosted Runner)
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      id-token: write
 
     env:
       ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
@@ -30,10 +35,11 @@ jobs:
       - name: Azure Login
         uses: azure/login@v2
         with:
-        client-id: ${{ secrets.ARM_CLIENT_ID }}
-        tenant-id: ${{ secrets.ARM_TENANT_ID }}
-        subscription-id: ${{ secrets.ARM_SUBSCRIPTION_ID }}
-        client-secret: ${{ secrets.ARM_CLIENT_SECRET }}
+          client-id: ${{ secrets.ARM_CLIENT_ID }}
+          tenant-id: ${{ secrets.ARM_TENANT_ID }}
+          subscription-id: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+          client-secret: ${{ secrets.ARM_CLIENT_SECRET }}
+
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
 
@@ -48,5 +54,3 @@ jobs:
 
       - name: Terraform Plan
         run: terraform plan -out=tfplan
-
-      
