@@ -19,7 +19,7 @@ resource "azurerm_network_interface" "nic_block" {
   for_each            = var.vms
   name                = each.value.nic_name
   location            = each.value.location
-  resource_group_name = each.value.rg_name
+  resource_group_name = each.value.resource_group_name
 
   ip_configuration {
     name                          = "black-ip"
@@ -33,7 +33,7 @@ resource "azurerm_network_interface" "nic_block" {
 resource "azurerm_linux_virtual_machine" "virtual_machine_block" {
   for_each            = var.vms
   name                = each.value.vm_name
-  resource_group_name = each.value.rg_name
+  resource_group_name = each.value.resource_group_name
   location            = each.value.location
   size                = each.value.vm_size
   admin_username      = each.value.admin_username
